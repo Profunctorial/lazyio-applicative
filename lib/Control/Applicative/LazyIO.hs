@@ -1,4 +1,4 @@
-module Control.Monad.LazyIO 
+module Control.Applicative.LazyIO 
   ( LazyIO 
   , liftLazyIO
   , runLazyIO 
