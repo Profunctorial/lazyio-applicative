@@ -20,36 +20,40 @@ name:               lazyio-applicative
 -- PVP summary:     +-+------- breaking API changes
 --                  | | +----- non-breaking API additions
 --                  | | | +--- code changes with no API change
-version:            0.1.0.0
+version:            0.1.0.2
 
--- A short (one-line) description of the package.
--- synopsis:
 
+synopsis:
+  LazyIO applicative for asymptotic performance 
 -- A longer description of the package.
--- description:
-
+description:
+  Producing data structures lazily is builtin pure haskell, but the IO monad is strict meaning Functor and Applicative have wildy different asymptotics (for IO). Using lazy IO allows effectful mappings WITH lazy streaming. LazyIO actions are expected to be commutative up to correctness.  
 -- The license under which the package is released.
 license:            MIT
+category:         Control, Applicative
 
 -- The file containing the license text.
-license-file:       LICENSE
+license-file:       LICENSE.md
 
 -- The package author(s).
 author:             Profunctorial
-
+bug-reports: https://github.com/Profunctorial/lazyio-applicative/issues
 -- An email address to which users can send suggestions, bug reports, and patches.
 maintainer:         profunctorial@protonmail.com
 
 -- A copyright notice.
 -- copyright:
-category:           Control
 build-type:         Simple
 
 -- Extra doc files to be distributed with the package, such as a CHANGELOG or a README.
-extra-doc-files:    CHANGELOG.md
+-- extra-doc-files:    CHANGELOG.md
 
 -- Extra source files to be distributed with the package, such as examples, or a tutorial module.
 -- extra-source-files:
+
+source-repository head
+  type:     git 
+  location: https://github.com/Profunctorial/lazyio-applicative/
 
 common warnings
     ghc-options: -Wall
@@ -59,8 +63,8 @@ library
     import:           warnings
 
     -- Modules exported by the library.
-    exposed-modules: Control.Monad.LazyIO  
-
+    exposed-modules: Control.Applicative.LazyIO  
+    ghc-options: -O2 -Wall
     -- Modules included in this library but not exported.
     -- other-modules:
 
@@ -68,7 +72,7 @@ library
     -- other-extensions:
 
     -- Other library packages from which modules are imported.
-    build-depends:    base ^>=4.16.4.0
+    build-depends:    base >= 4.10 && < 5  
 
     -- Directories containing source files.
     hs-source-dirs:   lib
