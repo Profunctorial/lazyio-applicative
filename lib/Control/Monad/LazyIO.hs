@@ -6,6 +6,7 @@ module Control.Monad.LazyIO
 
 import System.IO.Unsafe (unsafeInterleaveIO) 
 
+-- | Internals guarantee work does not repeat across threads (unsafeInterleaveIO) 
 newtype LazyIO a = LazyIO { unLazyIO :: IO a } 
 
 instance Functor LazyIO where
@@ -19,6 +20,7 @@ instance Applicative LazyIO where
     pure $ f' g'  
   
 
+-- | IO action should be commutative (order independent) 
 liftLazyIO :: IO a -> LazyIO a 
 liftLazyIO = LazyIO 
 
